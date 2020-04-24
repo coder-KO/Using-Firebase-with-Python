@@ -42,3 +42,49 @@ def dataFromFirebase(data):
     url = storage.child(path_on_cloud).get_url('GET')
     print("URL of " + data + " is :" + url)
 
+# //////////////////// Functions for Realtime Firebase Database \\\\\\\\\\\\\\\\\\\\ #
+
+# ========== Add data to Realtime Database ========== #
+def addToDB(id, location, date, time, status, url, lat, lng):
+    database.child("Accidents").child(id)
+    data = {"Location": location, "Date": date, "Time": time, "Status": status, "URL":url, "Latitude":lat, "Longitude":lng}
+    database.set(data)
+    print("Data added for ID "+id)
+# ========= ./Add data to Realtime Database ========= #
+
+
+
+# ========== Update data in Realtime Database ========== #
+def updateDB(id, status):
+    database.child("Accidents").child(id).update({"Status": status})
+    print("Data Updated for ID " + id)
+# ========= ./Update data in Realtime Database ========= #
+
+
+
+# ========= Search data from Realtime Database ========= #
+def searchFromDB(id):
+    accidents = database.child("Accidents").child(id).get()
+    data = accidents.val()
+    print(data)
+
+    return data['Date'], data['Time'], data['Location'], data['Status'], data['URL'], data['Latitude'], data['Longitude']
+# ========= ./Search data from Realtime Database ========= #
+
+
+# ========= Retrive data from Realtime Database ========= #
+def retriveFromDB():
+    ids = []
+    all_accidents = database.child("Accidents").get()
+    for accident in all_accidents.each():
+        data = accident.val()
+        if (data["Status"] == "1") or (data["Status"] == "0"):
+            print("We love Dev.ino")
+            id = accident.key()
+            print(id)
+            ids.append(id)
+            print(data)
+    return ids
+# ========= ./Retrive data from Realtime Database ========= #
+
+
