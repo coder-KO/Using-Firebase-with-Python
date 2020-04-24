@@ -45,9 +45,9 @@ def dataFromFirebase(data):
 # //////////////////// Functions for Realtime Firebase Database \\\\\\\\\\\\\\\\\\\\ #
 
 # ========== Add data to Realtime Database ========== #
-def addToDB(id, location, date, time, status, url, lat, lng):
-    database.child("Accidents").child(id)
-    data = {"Location": location, "Date": date, "Time": time, "Status": status, "URL":url, "Latitude":lat, "Longitude":lng}
+def addToDB(data):
+    database.child("Parent").child(data)
+    data = {"Key1": "Value1", "Key2": "Value2", "Key3": "Value3"}
     database.set(data)
     print("Data added for ID "+id)
 # ========= ./Add data to Realtime Database ========= #
