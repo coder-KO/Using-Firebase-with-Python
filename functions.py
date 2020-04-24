@@ -30,7 +30,7 @@ def dataToFirebase(data):
     print("Data : " + data + " successfully uploaded to firebase!")
     url = storage.child(path_on_cloud).get_url('GET')
     print("URL of "+ data + " is :"+url)
-
+# ========== ./Function to send images to firebase ========== #
 
 
 # ========== Function to download images from firebase ========== #
@@ -41,7 +41,7 @@ def dataFromFirebase(data):
     print("Data : " + data + " successfully downloaded from firebase!")
     url = storage.child(path_on_cloud).get_url('GET')
     print("URL of " + data + " is :" + url)
-
+# ========== ./Function to download images from firebase ========== #
 
 
 # //////////////////// Functions for Realtime Firebase Database \\\\\\\\\\\\\\\\\\\\ #
@@ -76,17 +76,15 @@ def searchFromDB(key):
 
 # ========= Retrive data from Realtime Database ========= #
 def retriveFromDB():
-    ids = []
-    all_accidents = database.child("Accidents").get()
-    for accident in all_accidents.each():
+    keys = []
+    all_nodes = database.child("Parent").get()
+    for node in all_nodes.each():
         data = accident.val()
-        if (data["Status"] == "1") or (data["Status"] == "0"):
-            print("We love Dev.ino")
-            id = accident.key()
-            print(id)
-            ids.append(id)
-            print(data)
-    return ids
+        key = accident.key()
+        print(key)
+        keys.append(key)
+        print(data)
+    return keys
 # ========= ./Retrive data from Realtime Database ========= #
 
 
