@@ -42,7 +42,7 @@ def dataFromFirebase(data):
     url = storage.child(path_on_cloud).get_url('GET')
     print("URL of " + data + " is :" + url)
 
-    
+
 
 # //////////////////// Functions for Realtime Firebase Database \\\\\\\\\\\\\\\\\\\\ #
 
@@ -65,12 +65,12 @@ def updateDB(data):
 
 
 # ========= Search data from Realtime Database ========= #
-def searchFromDB(id):
-    accidents = database.child("Accidents").child(id).get()
-    data = accidents.val()
+def searchFromDB(key):
+    database.child("Parent").child(key).get()
+    data = parent.val()
     print(data)
 
-    return data['Date'], data['Time'], data['Location'], data['Status'], data['URL'], data['Latitude'], data['Longitude']
+    return data['Key1'], data['Key2'], data['Key3']
 # ========= ./Search data from Realtime Database ========= #
 
 
