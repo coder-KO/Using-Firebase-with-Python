@@ -42,6 +42,8 @@ def dataFromFirebase(data):
     url = storage.child(path_on_cloud).get_url('GET')
     print("URL of " + data + " is :" + url)
 
+    
+
 # //////////////////// Functions for Realtime Firebase Database \\\\\\\\\\\\\\\\\\\\ #
 
 # ========== Add data to Realtime Database ========== #
@@ -49,15 +51,15 @@ def addToDB(data):
     database.child("Parent").child(data)
     data = {"Key1": "Value1", "Key2": "Value2", "Key3": "Value3"}
     database.set(data)
-    print("Data added for ID "+id)
+    print("Data added :" + data)
 # ========= ./Add data to Realtime Database ========= #
 
 
 
 # ========== Update data in Realtime Database ========== #
-def updateDB(id, status):
-    database.child("Accidents").child(id).update({"Status": status})
-    print("Data Updated for ID " + id)
+def updateDB(data):
+    database.child("Parent").child(data).update({"key": "Value"})
+    print("Data Updated :" + data)
 # ========= ./Update data in Realtime Database ========= #
 
 
